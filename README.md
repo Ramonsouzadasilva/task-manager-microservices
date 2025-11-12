@@ -15,7 +15,6 @@ Arquitetura de microserviços completa seguindo Clean Architecture e princípios
 
 ## Arquitetura
 
-\`\`\`
 microservices/
 ├── auth-service/ # Serviço de autenticação
 │ ├── src/
@@ -25,16 +24,17 @@ microservices/
 │ │ ├── presentation/
 │ │ └── main/ # Setup e factories
 │ └── prisma/
-├── task-manager-service/ # Serviço de tarefas
+│
+├── task-manager-service/ # Serviço de tarefas e metas
 │ ├── src/
-│ ├── domain/
-│ ├── application/
-│ ├── infrastructure/
-│ ├── presentation/
-│ └── main/
+│ │ ├── domain/
+│ │ ├── application/
+│ │ ├── infrastructure/
+│ │ ├── presentation/
+│ │ └── main/
+│ └── prisma/
 │
 └── docker-compose.yml
-\`\`\`
 
 ## Princípios Aplicados
 
@@ -66,9 +66,7 @@ microservices/
 
 ### 1. Iniciar infraestrutura Docker
 
-\`\`\`bash
 docker-compose up -d
-\`\`\`
 
 ## Endpoints
 
