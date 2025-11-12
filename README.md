@@ -13,29 +13,6 @@ Arquitetura de microserviços completa seguindo Clean Architecture e princípios
 - **Documentation**: Swagger
 - **Container**: Docker
 
-## Arquitetura
-
-microservices/
-├── auth-service/ # Serviço de autenticação
-│ ├── src/
-│ │ ├── domain/
-│ │ ├── application/
-│ │ ├── infrastructure/
-│ │ ├── presentation/
-│ │ └── main/ # Setup e factories
-│ └── prisma/
-│
-├── task-manager-service/ # Serviço de tarefas e metas
-│ ├── src/
-│ │ ├── domain/
-│ │ ├── application/
-│ │ ├── infrastructure/
-│ │ ├── presentation/
-│ │ └── main/
-│ └── prisma/
-│
-└── docker-compose.yml
-
 ## Princípios Aplicados
 
 - **SOLID**
