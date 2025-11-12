@@ -1,0 +1,70 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum TaskStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum TaskPriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum TaskFrequency {
+  DAILY
+  WEEKLY
+  MONTHLY
+}
+
+model Task {
+  id          String         @id @default(uuid())
+  title       String
+  description String?
+  status      TaskStatus     @default(PENDING)
+  priority    TaskPriority   @default(MEDIUM)
+  frequency   TaskFrequency?
+  userId      String
+  goalId      String?
+  dueDate     DateTime?
+  completedAt DateTime?
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  goal Goal? @relation(fields: [goalId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([status])
+  @@index([dueDate])
+  @@index([goalId])
+  @@map("tasks")
+}
+
+model Goal {
+  id          String    @id @default(uuid())
+  title       String
+  description String?
+  userId      String
+  target      Int
+  current     Int       @default(0)
+  deadline    DateTime?
+  isCompleted Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  tasks Task[]
+
+  @@index([userId])
+  @@index([isCompleted])
+  @@map("goals")
+}
